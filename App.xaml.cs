@@ -1,4 +1,7 @@
-﻿namespace BaseMobile
+﻿using BaseMobile.Services;
+using System.ComponentModel;
+
+namespace BaseMobile
 {
     public partial class App : Application
     {
@@ -7,6 +10,29 @@
             InitializeComponent();
 
             MainPage = new AppShell();
+
+            ThemeService.Instance.LoadFromPreferences();
+            SetAppTheme();
+            ThemeService.Instance.PropertyChanged += OnSettingsPropertyChanged;
+
+            if (Preferences.Default.ContainsKey(Constants.LanguageKey))
+            {
+                string lang = Preferences.Default.Get(Constants.LanguageKey, Constants.EnglishLang);
+				LocalizationManager.Instance.SetLanguage(lang);
+            }
+        }
+
+        private void SetAppTheme()
+        {
+            UserAppTheme = ThemeService.Instance?.Theme ?? AppTheme.Unspecified;
+        }
+
+        private void OnSettingsPropertyChanged(object? sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == nameof(ThemeService.Theme))
+            {
+                SetAppTheme();
+            }
         }
     }
 }
