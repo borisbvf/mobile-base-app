@@ -5,5 +5,7 @@ public class Constants
 	public const string LanguageKey = "Language";
 
 	public const string RussianLang = "Русский";
+	public const string RussianAbrv = "ru";
 	public const string EnglishLang = "English";
+	public const string EnglishAbrv = "en-US";
 }

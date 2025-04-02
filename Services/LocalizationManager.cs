@@ -21,4 +21,20 @@ public class LocalizationManager : INotifyPropertyChanged
 		AppResources.Culture = culture;
 		PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(null));
 	}
+
+	public void SetLanguage(string language)
+	{
+		CultureInfo culture;
+		if (language == Constants.RussianLang)
+		{
+			culture = new CultureInfo(Constants.RussianAbrv);
+		} else if (language == Constants.EnglishLang)
+		{
+			culture = new CultureInfo(Constants.EnglishAbrv);
+		} else
+		{
+			culture = new CultureInfo(Constants.EnglishAbrv);
+		}
+		SetCulture(culture);
+	}
 }
