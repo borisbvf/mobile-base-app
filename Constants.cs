@@ -8,4 +8,7 @@ public class Constants
 	public const string RussianAbrv = "ru";
 	public const string EnglishLang = "English";
 	public const string EnglishAbrv = "en-US";
+
+	public const string MainPageRoute = "MainPage";
+	public const string SettingsPageRoute = "SettingsPage";
 }
