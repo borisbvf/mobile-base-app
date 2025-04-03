@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using BaseMobile.ViewModels;
+using BaseMobile.Views;
+using Microsoft.Extensions.Logging;
 
 namespace BaseMobile
 {
@@ -18,7 +20,8 @@ namespace BaseMobile
 #if DEBUG
     		builder.Logging.AddDebug();
 #endif
-
+            builder.Services.AddTransient<SettingsViewModel>();
+            builder.Services.AddTransient<SettingsPage>();
             return builder.Build();
         }
     }

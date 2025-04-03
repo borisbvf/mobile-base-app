@@ -1,9 +1,13 @@
+using BaseMobile.ViewModels;
+
 namespace BaseMobile.Views;
 
 public partial class SettingsPage : ContentPage
 {
-	public SettingsPage()
+	public SettingsPage(SettingsViewModel settingsViewModel)
 	{
 		InitializeComponent();
+
+		BindingContext = settingsViewModel;
 	}
 }

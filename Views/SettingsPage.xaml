@@ -7,9 +7,51 @@
 			 x:DataType="viewmodels:SettingsViewModel"
              Title="SettingsPage">
 	<VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+		<Frame
+			HeightRequest="70"
+			Margin="2"
+			Padding="2">
+			<Grid
+				ColumnDefinitions="*,*"
+				Margin="5"
+				Padding="5">
+				<Label
+					VerticalOptions="Center"
+					HorizontalOptions="Start"
+					FontSize="Medium"
+					Text="Theme"/>
+				<Picker
+					Grid.Column="1"
+					VerticalOptions="Center"
+					HorizontalOptions="End"
+					FontSize="Medium"
+					ItemsSource="{Binding Themes}"
+					ItemDisplayBinding="{Binding DisplayName}"
+					SelectedItem="{Binding SelectedTheme}"/>
+			</Grid>
+		</Frame>
+		<Frame
+			HeightRequest="70"
+			Margin="2"
+			Padding="2">
+			<Grid
+				ColumnDefinitions="*,*"
+				Margin="5"
+				Padding="5">
+				<Label
+					VerticalOptions="Center"
+					HorizontalOptions="Start"
+					FontSize="Medium"
+					Text="Language"/>
+				<Picker
+					Grid.Column="1"
+					VerticalOptions="Center"
+					HorizontalOptions="End"
+					FontSize="Medium"
+					ItemsSource="{Binding Languages}"
+					ItemDisplayBinding="{Binding .}"
+					SelectedItem="{Binding SelectedLanguage}"/>
+			</Grid>
+		</Frame>
     </VerticalStackLayout>
 </ContentPage>
