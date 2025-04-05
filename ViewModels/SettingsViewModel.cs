@@ -2,13 +2,15 @@
 using BaseMobile.Models;
 using Microsoft.Maui.Platform;
 using System.Globalization;
+using System.Collections.ObjectModel;
+using BaseMobile.Resources.Localization;
 
 namespace BaseMobile.ViewModels;
 public class SettingsViewModel : BaseViewModel
 {
 	public LocalizationManager LocalizationManager => LocalizationManager.Instance;
 
-	public List<SettingTheme> Themes { get; set; }
+	public ObservableCollection<SettingTheme> Themes { get; set; }
 	public SettingTheme selectedTheme;
 	public SettingTheme SelectedTheme
 	{
@@ -19,7 +21,13 @@ public class SettingsViewModel : BaseViewModel
 			{
 				selectedTheme = value;
 				OnPropertyChanged();
-				ThemeService.Instance.Theme = selectedTheme.AppTheme;
+
+				// Update theme only if it differs from current - it could be the case when language changes.
+				if (selectedTheme.AppTheme != ThemeService.Instance.Theme)
+				{
+					// Preferences will be saved in ThemeService
+					ThemeService.Instance!.Theme = selectedTheme.AppTheme;
+				}
 			}
 		}
 	}
@@ -35,56 +43,54 @@ public class SettingsViewModel : BaseViewModel
 			{
 				selectedLanguage = value;
 				OnPropertyChanged();
+
 				LocalizationManager.Instance.SetLanguage(selectedLanguage);
+
+				// Save preferences, they are not saved in LocalizationManager
 				Preferences.Default.Set(Constants.LanguageKey, selectedLanguage);
+
+				// Update manually app theme names, because it will not happen automatically
+				RefillThemes();
 			}
 		}
 	}
 
 	public SettingsViewModel()
 	{
-		Themes = new()
-		{
-			new SettingTheme(AppTheme.Light, "LightTheme"),
-			new SettingTheme(AppTheme.Dark, "DarkTheme"),
-			new SettingTheme(AppTheme.Unspecified, "SystemTheme")
-		};
-		selectedTheme = LoadThemeFromSettings();
+		Themes = new();
+		RefillThemes();
 
 		Languages = new()
 		{
 			Constants.EnglishLang,
 			Constants.RussianLang
 		};
-		selectedLanguage = LoadLanguageFromSettings();
-	}
-
-	private SettingTheme LoadThemeFromSettings()
-	{
-		SettingTheme? Find(AppTheme? appTheme)
-		{
-			foreach (SettingTheme theme in Themes)
-			{
-				if (theme.AppTheme == appTheme)
-				{
-					return theme;
-				}
-			}
-			return null;
-		}
-
-		return Find(ThemeService.Instance?.Theme) ?? Themes[2];
-	}
-
-	private string LoadLanguageFromSettings()
-	{
-		string lang = CultureInfo.CurrentCulture.TwoLetterISOLanguageName == Constants.RussianAbrv
+		selectedLanguage = AppResources.Culture.TwoLetterISOLanguageName == Constants.RussianAbrv
 			? Constants.RussianLang
 			: Constants.EnglishLang;
-		if (Preferences.Default.ContainsKey(Constants.LanguageKey))
+	}
+
+	private void RefillThemes()
+	{
+		AppTheme curTheme = ThemeService.Instance?.Theme ?? AppTheme.Unspecified;
+		SettingTheme lightTheme = new SettingTheme(AppTheme.Light, LocalizationManager["LightTheme"].ToString()!);
+		SettingTheme darkTheme = new SettingTheme(AppTheme.Dark, LocalizationManager["DarkTheme"].ToString()!);
+		SettingTheme systemTheme = new SettingTheme(AppTheme.Unspecified, LocalizationManager["SystemTheme"].ToString()!);
+		SettingTheme newTheme = systemTheme;
+		if (curTheme == lightTheme.AppTheme)
 		{
-			lang = Preferences.Default.Get(Constants.LanguageKey, Constants.EnglishLang);
+			newTheme = lightTheme;
+		} else if (curTheme == darkTheme.AppTheme)
+		{
+			newTheme = darkTheme;
 		}
-		return lang;
+		Themes.Add(lightTheme);
+		Themes.Add(darkTheme);
+		Themes.Add(systemTheme);
+		selectedTheme = newTheme;
+		while (Themes.Count > 3)
+		{
+			Themes.RemoveAt(0);
+		}
 	}
 }

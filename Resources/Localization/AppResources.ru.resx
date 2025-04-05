@@ -120,10 +120,28 @@
   <data name="Cancel" xml:space="preserve">
     <value>Отменить</value>
   </data>
+  <data name="DarkTheme" xml:space="preserve">
+    <value>Тёмная</value>
+  </data>
   <data name="Error" xml:space="preserve">
     <value>Ошибка</value>
   </data>
+  <data name="Language" xml:space="preserve">
+    <value>Язык:</value>
+  </data>
+  <data name="LightTheme" xml:space="preserve">
+    <value>Светлая</value>
+  </data>
   <data name="Ok" xml:space="preserve">
     <value>Ок</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Настройки</value>
+  </data>
+  <data name="SystemTheme" xml:space="preserve">
+    <value>Системная</value>
+  </data>
+  <data name="Theme" xml:space="preserve">
+    <value>Тема:</value>
   </data>
 </root>

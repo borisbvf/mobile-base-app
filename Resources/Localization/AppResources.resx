@@ -120,10 +120,29 @@
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
+  <data name="DarkTheme" xml:space="preserve">
+    <value>Dark</value>
+  </data>
   <data name="Error" xml:space="preserve">
     <value>Error</value>
   </data>
+  <data name="Language" xml:space="preserve">
+    <value>Language:</value>
+  </data>
+  <data name="LightTheme" xml:space="preserve">
+    <value>Light</value>
+  </data>
   <data name="Ok" xml:space="preserve">
     <value>Ok</value>
+    <comment>Ok</comment>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="SystemTheme" xml:space="preserve">
+    <value>System</value>
+  </data>
+  <data name="Theme" xml:space="preserve">
+    <value>Theme:</value>
   </data>
 </root>

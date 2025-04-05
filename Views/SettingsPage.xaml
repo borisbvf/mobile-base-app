@@ -5,7 +5,7 @@
 			 xmlns:models="clr-namespace:BaseMobile.Models"
 			 xmlns:viewmodels="clr-namespace:BaseMobile.ViewModels"
 			 x:DataType="viewmodels:SettingsViewModel"
-             Title="SettingsPage">
+             Title="{Binding LocalizationManager[Settings], Mode=OneWay}">
 	<VerticalStackLayout>
 		<Frame
 			HeightRequest="70"
@@ -19,7 +19,7 @@
 					VerticalOptions="Center"
 					HorizontalOptions="Start"
 					FontSize="Medium"
-					Text="Theme"/>
+					Text="{Binding LocalizationManager[Theme],Mode=OneWay}"/>
 				<Picker
 					Grid.Column="1"
 					VerticalOptions="Center"
@@ -42,7 +42,7 @@
 					VerticalOptions="Center"
 					HorizontalOptions="Start"
 					FontSize="Medium"
-					Text="Language"/>
+					Text="{Binding LocalizationManager[Language],Mode=OneWay}"/>
 				<Picker
 					Grid.Column="1"
 					VerticalOptions="Center"
