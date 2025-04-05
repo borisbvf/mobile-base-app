@@ -1,4 +1,5 @@
 ﻿using System.Windows.Input;
+using BaseMobile.Services;
 
 namespace BaseMobile
 {
@@ -10,7 +11,9 @@ namespace BaseMobile
             BindingContext = this;
         }
 
-        public ICommand SettingsCommand => new Command(GoToSettings);
+		public LocalizationManager LocalizationManager => LocalizationManager.Instance;
+
+		public ICommand SettingsCommand => new Command(GoToSettings);
         private async void GoToSettings()
         {
             await Shell.Current.GoToAsync($"{Constants.SettingsPageRoute}");

@@ -61,6 +61,15 @@ namespace BaseMobile.Resources.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Mobile application.
+        /// </summary>
+        internal static string AppName {
+            get {
+                return ResourceManager.GetString("AppName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         internal static string Cancel {
@@ -102,6 +111,15 @@ namespace BaseMobile.Resources.Localization {
         internal static string LightTheme {
             get {
                 return ResourceManager.GetString("LightTheme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Changing the language and theme is available from the settings menu.
+        /// </summary>
+        internal static string MainPageHint {
+            get {
+                return ResourceManager.GetString("MainPageHint", resourceCulture);
             }
         }
         

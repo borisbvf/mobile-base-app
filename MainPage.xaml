@@ -2,11 +2,11 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BaseMobile.MainPage"
-			 Title="Base mobile app">
+			 Title="{Binding LocalizationManager[AppName],Mode=OneWay}">
 	<ContentPage.ToolbarItems>
 		<ToolbarItem
 			Order="Secondary"
-			Text="Settings"
+			Text="{Binding LocalizationManager[Settings], Mode=OneWay}"
 			Command="{Binding SettingsCommand}"/>
 	</ContentPage.ToolbarItems>
 
@@ -16,11 +16,11 @@
             Spacing="25">
 
             <Label
-                Text="Base mobile application"
+                Text="{Binding LocalizationManager[AppName],Mode=OneWay}"
                 Style="{StaticResource Headline}"/>
 
             <Label
-                Text="Changing the language and theme is available from the settings menu"
+                Text="{Binding LocalizationManager[MainPageHint],Mode=OneWay}"
                 Style="{StaticResource SubHeadline}"
                 SemanticProperties.HeadingLevel="Level2" />
 

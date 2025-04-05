@@ -1,7 +1,5 @@
 ﻿using BaseMobile.Services;
 using BaseMobile.Models;
-using Microsoft.Maui.Platform;
-using System.Globalization;
 using System.Collections.ObjectModel;
 using BaseMobile.Resources.Localization;
 
