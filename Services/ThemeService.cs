@@ -8,7 +8,7 @@ public class ThemeService : INotifyPropertyChanged
 
 	public void OnPropertyChanged([CallerMemberName] string? name = null)
 	{
-		PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(null));
+		PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
 	}
 
 	private static ThemeService? _instance = new ThemeService();
