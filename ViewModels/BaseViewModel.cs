@@ -2,7 +2,7 @@
 using System.Runtime.CompilerServices;
 
 namespace BaseMobile.ViewModels;
-public class BaseViewModel
+public class BaseViewModel : INotifyPropertyChanged
 {
 	private bool isBusy;
 	private string? title;
